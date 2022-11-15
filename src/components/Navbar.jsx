@@ -9,8 +9,6 @@ import {
   MenuOutlined,
 } from "@ant-design/icons";
 import logo from "../images/cryptocurrency.png";
-import MenuItem from "antd/lib/menu/MenuItem";
-import Item from "antd/lib/list/Item";
 
 const Navbar = () => {
   return (
