@@ -11,7 +11,7 @@ import {
 } from "./components";
 
 import "./App.css";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 
 const App = () => {
   return (

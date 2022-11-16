@@ -25,6 +25,8 @@ const Cryptocurrencies = ({ simplified }) => {
     }
   }, [searchTerm]);
 
+  if (isFetching) return "Loading ...";
+
   return (
     <div>
       {!simplified && (

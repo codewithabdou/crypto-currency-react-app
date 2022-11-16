@@ -61,7 +61,7 @@ const Home = () => {
           <Link to="/news">show more</Link>
         </Typography.Title>
       </div>
-      <News simplified/>
+      <News simplified={true}/>
     </div>
   );
 };
