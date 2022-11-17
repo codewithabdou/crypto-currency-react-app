@@ -4,6 +4,7 @@ import moment from "moment/moment";
 import { useGetCryptosNewsQuery } from "../services/CryptoNewsApi";
 import { useGetCryptosQuery } from "../services/CryptoApi";
 import "../App.css";
+import Loader from "./Loader";
 
 const { Text, Title } = Typography;
 const demoImgUrl =
@@ -11,8 +12,8 @@ const demoImgUrl =
 
 const News = ({ simplified }) => {
   const [searchValue, setSearchValue] = useState("Cryptocurrency");
-  const { data: cryptos } = useGetCryptosQuery(100);
-  const { data, isFeching } = useGetCryptosNewsQuery({
+  const { data: cryptos,isFetchingCryptos } = useGetCryptosQuery(100);
+  const { data, isFechingNews } = useGetCryptosNewsQuery({
     newsCategory: searchValue,
     count: simplified ? 6 : 20,
   });
@@ -22,7 +23,7 @@ const News = ({ simplified }) => {
     value: coin.name,
   }));
 
-  if (isFeching) return "Loading ...";
+  if (!data || !cryptos) return <Loader/>;
 
   return (
     <div

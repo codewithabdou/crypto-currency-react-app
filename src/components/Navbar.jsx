@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, Typography, Menu, Button } from "antd";
 import { Link } from "react-router-dom";
 import {
@@ -7,10 +7,12 @@ import {
   BulbOutlined,
   FundOutlined,
   MenuOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 import logo from "../images/cryptocurrency.png";
 
 const Navbar = () => {
+  const [menuHidden, setMenuHidden] = useState(true);
   return (
     <div className="nav-container">
       <div className="logo-container">
@@ -18,21 +20,38 @@ const Navbar = () => {
         <Typography.Title level={2} className="logo">
           <Link to="/">CryptoVerse</Link>
         </Typography.Title>
+        {menuHidden ? (
+          <MenuOutlined
+          style={{color : "white"}}
+            className="show-on-mobile-only"
+            onClick={() => {
+              setMenuHidden((currentValue) => !currentValue);
+            }}
+          />
+        ) : (
+          <CloseOutlined style={{color : "white"}}
+          
+            className="show-on-mobile-only"
+            onClick={() => {
+              setMenuHidden((currentValue) => !currentValue);
+            }}
+          />
+        )}
       </div>
-        <Menu theme="dark" mode="inline">
-          <Menu.Item key="Home" icon={<HomeOutlined/>}>
-            <Link to="/">Home</Link>
-          </Menu.Item>
-          <Menu.Item key="Crypto currencies" icon={<MoneyCollectOutlined/>}>
-            <Link to="/cryptocurrencies">Crypto currencies</Link>
-          </Menu.Item>
-          <Menu.Item key="Exchanges" icon={<FundOutlined/>}>
-            <Link to="/exchanges">Exchanges</Link>
-          </Menu.Item>
-          <Menu.Item key="News" icon={<BulbOutlined/>}>
-            <Link to="/news">News</Link>
-          </Menu.Item>
-        </Menu>
+      <Menu theme="dark" mode="inline" className={menuHidden ? "menu-hidden" : "menu-shown"}>
+        <Menu.Item key="Home" icon={<HomeOutlined />}>
+          <Link to="/">Home</Link>
+        </Menu.Item>
+        <Menu.Item key="Crypto currencies" icon={<MoneyCollectOutlined />}>
+          <Link to="/cryptocurrencies">Crypto currencies</Link>
+        </Menu.Item>
+        <Menu.Item key="Exchanges" icon={<FundOutlined />}>
+          <Link to="/exchanges">Exchanges</Link>
+        </Menu.Item>
+        <Menu.Item key="News" icon={<BulbOutlined />}>
+          <Link to="/news">News</Link>
+        </Menu.Item>
+      </Menu>
     </div>
   );
 };
