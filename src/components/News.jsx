@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Select, Typography, Row, Col, Avatar, Card } from "antd";
 import moment from "moment/moment";
 import { useGetCryptosNewsQuery } from "../services/CryptoNewsApi";
@@ -12,18 +12,22 @@ const demoImgUrl =
 
 const News = ({ simplified }) => {
   const [searchValue, setSearchValue] = useState("Cryptocurrency");
-  const { data: cryptos,isFetchingCryptos } = useGetCryptosQuery(100);
-  const { data, isFechingNews } = useGetCryptosNewsQuery({
+  const { data: cryptos } = useGetCryptosQuery(100);
+  const { data } = useGetCryptosNewsQuery({
     newsCategory: searchValue,
     count: simplified ? 6 : 20,
   });
 
-  const options = cryptos?.data?.coins.map((coin, index) => ({
+  const options = cryptos?.data?.coins.map((coin, _) => ({
     label: coin.name,
     value: coin.name,
   }));
 
-  if (!data || !cryptos) return <Loader/>;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  if (!data || !cryptos) return <Loader />;
 
   return (
     <div
@@ -37,7 +41,7 @@ const News = ({ simplified }) => {
             style={{
               marginTop: "0.3rem",
               marginBottom: "1rem",
-              width: 180
+              width: 180,
             }}
             onChange={(value) => {
               setSearchValue(value);
@@ -51,12 +55,12 @@ const News = ({ simplified }) => {
         {data &&
           data.value.map((news, index) => (
             <Col xs={24} lg={8} md={12} key={index}>
-              <Card
-                hoverable
-                className="news-card"
-                style={{ borderRadius: "2rem" }}
-              >
-                <a href={news.url} target="_blank" rel="noreferrer">
+              <a href={news.url} target="_blank" rel="noreferrer">
+                <Card
+                  hoverable
+                  className="news-card"
+                  style={{ borderRadius: "2rem" }}
+                >
                   <div className="news-image-container">
                     <Title level={4} className="news-title">
                       {news.name.length > 100
@@ -94,8 +98,8 @@ const News = ({ simplified }) => {
                       {moment(news.datePublished).startOf("ss").fromNow()}
                     </Text>
                   </div>
-                </a>
-              </Card>
+                </Card>
+              </a>
             </Col>
           ))}
       </Row>

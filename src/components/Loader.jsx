@@ -1,13 +1,7 @@
 import React, { useState } from "react";
-import { Progress } from "antd";
+import { Spin } from "antd";
 
 const Loader = () => {
-  const [value, setValue] = useState(0);
-  setTimeout(() => {
-    if (value < 98) {
-      setValue((currentValue) => currentValue + 1);
-    }
-  }, 15);
   return (
     <div
       style={{
@@ -18,7 +12,7 @@ const Loader = () => {
         alignItems: "center",
       }}
     >
-      <Progress type="circle" percent={value} />
+      <Spin tip="Loading" size="large"/>
     </div>
   );
 };

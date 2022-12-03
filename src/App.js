@@ -6,7 +6,6 @@ import {
   Home,
   Cryptocurrencies,
   News,
-  Exchanges,
   CryptoDetails,
 } from "./components";
 
@@ -24,7 +23,6 @@ const App = () => {
           <div className="routes">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/exchanges" element={<Exchanges />} />
               <Route path="/news" element={<News />} />
               <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
               <Route path="/crypto/:coinId" element={<CryptoDetails />} />
@@ -38,7 +36,7 @@ const App = () => {
         </Typography.Text>
         <Space size={20}>
           <Link to="/">Home</Link>
-          <Link to="/exchanges">Exchanges</Link>
+          <Link to="/cryptocurrencies">Crypyocurrencies</Link>
           <Link to="/news">News</Link>
         </Space>
       </div>

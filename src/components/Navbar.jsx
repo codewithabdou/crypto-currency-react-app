@@ -20,33 +20,34 @@ const Navbar = () => {
         <Typography.Title level={2} className="logo">
           <Link to="/">CryptoVerse</Link>
         </Typography.Title>
-        {menuHidden ? (
-          <MenuOutlined
-          style={{color : "white"}}
-            className="show-on-mobile-only"
-            onClick={() => {
-              setMenuHidden((currentValue) => !currentValue);
-            }}
-          />
-        ) : (
-          <CloseOutlined style={{color : "white"}}
-          
-            className="show-on-mobile-only"
-            onClick={() => {
-              setMenuHidden((currentValue) => !currentValue);
-            }}
-          />
-        )}
+        <div className="show-on-mobile-only">
+          {menuHidden ? (
+            <MenuOutlined
+              style={{ color: "white" }}
+              onClick={() => {
+                setMenuHidden((currentValue) => !currentValue);
+              }}
+            />
+          ) : (
+            <CloseOutlined
+              style={{ color: "white" }}
+              onClick={() => {
+                setMenuHidden((currentValue) => !currentValue);
+              }}
+            />
+          )}
+        </div>
       </div>
-      <Menu theme="dark" mode="inline" className={menuHidden ? "menu-hidden" : "menu-shown"}>
+      <Menu
+        theme="dark"
+        mode="inline"
+        className={menuHidden ? "menu-hidden" : "menu-shown"}
+      >
         <Menu.Item key="Home" icon={<HomeOutlined />}>
           <Link to="/">Home</Link>
         </Menu.Item>
         <Menu.Item key="Crypto currencies" icon={<MoneyCollectOutlined />}>
           <Link to="/cryptocurrencies">Crypto currencies</Link>
-        </Menu.Item>
-        <Menu.Item key="Exchanges" icon={<FundOutlined />}>
-          <Link to="/exchanges">Exchanges</Link>
         </Menu.Item>
         <Menu.Item key="News" icon={<BulbOutlined />}>
           <Link to="/news">News</Link>

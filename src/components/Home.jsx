@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect}from "react";
 import millify from "millify";
 import { Typography, Statistic, Row, Col } from "antd";
 import { Link } from "react-router-dom";
@@ -9,6 +9,11 @@ const Home = () => {
   const { data, isFetching } = useGetCryptosQuery(1);
 
   const globalStatsData = data?.data?.stats;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
 
   if (isFetching) return <Loader/>;
 
